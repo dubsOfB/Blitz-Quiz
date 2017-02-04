@@ -12,9 +12,9 @@ import {
   Button,
   ControlLabel} from 'react-bootstrap';
 
-import './../../App.css';
+import '../../../App.css';
 
-class NewQuestion extends Component {
+class Question extends Component {
   constructor(props) {
     super(props);
 
@@ -105,4 +105,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion;
+export default Question;

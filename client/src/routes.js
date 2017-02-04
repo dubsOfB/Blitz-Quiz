@@ -5,7 +5,7 @@ import App from './App';
 import Admin from './auth/containers/Admin';
 import Login from './auth/containers/Login';
 import Register from './auth/containers/Register';
-import TeacherDashboard from './teacherDashboard/containers/TeacherDashboard';
+import TeacherDashboard from './teacherDashboard/main/containers/TeacherDashboard';
 import StudentDashboard from './studentDashboard/containers/StudentDashboard';
 
 export default (

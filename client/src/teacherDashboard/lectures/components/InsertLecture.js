@@ -1,19 +1,25 @@
 import React, {Component} from 'react';
-import {ListGroupItem, Form, FormGroup, FormControl, ControlLabel, Button, Glyphicon} from 'react-bootstrap';
+import {ListGroupItem, ControlLabel, Button, Glyphicon} from 'react-bootstrap';
+import {Form, FormGroup, FormControl} from 'react-bootstrap';
 
-import './../App.css';
+import './../../../App.css';
 
-class InsertLectureText extends Component {
+class InsertLecture extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = {lectureName: ''}
-
-    this.handleQuestionChange = this.handleQuestionChange.bind(this);
+    this.state = {
+      lectureName: ''
+    }
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleLectureChange = this.handleLectureChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
+  
+  componentDidMount(){
+    this.input.focus();
+  }
 
-  handleQuestionChange(e) {
+  handleLectureChange(e) {
     this.setState({ lectureName: e.target.value });
   }
 
@@ -25,11 +31,9 @@ class InsertLectureText extends Component {
     }
   }
 
-  componentDidMount(){
-    this.input.focus();
-  }
 
   render() {
+    console.log('rendering');
     return (
       <ListGroupItem >
       <Form inline>
@@ -38,7 +42,7 @@ class InsertLectureText extends Component {
             type="text"
             inputRef={ref => { this.input = ref; }}
             value={this.state.lectureName}
-            onChange={this.handleQuestionChange}
+            onChange={this.handleLectureChange}
             onKeyPress={(e) => this.handleKeyPress(e)} />
       </Form>
     </ListGroupItem>
@@ -46,6 +50,6 @@ class InsertLectureText extends Component {
   }
 }
 
-export default InsertLectureText;
+export default InsertLecture;
 
 //onKeyPress={(e) => this.props.handleAddLecture(e, this.state.lectureName)}

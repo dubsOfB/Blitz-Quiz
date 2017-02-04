@@ -10,8 +10,7 @@ const columns = [{
                     children: [
                       { headerName: 'Student Id', field: 'id', width: 100 }, 
                       { headerName: 'First Name', field: 'firstName', width: 350 },
-                      { headerName: 'Last Name', field: 'lastName', width: 350 },
-                      { headerName: 'photo', field: 'photo', width: 300, hide: true }
+                      { headerName: 'Last Name', field: 'lastName', width: 350 }
                    ]
                   }]
 
@@ -23,6 +22,10 @@ const styles = {
 
 
 class AvailableStudents extends Component {
+  constructor(props){
+    super(props);
+
+  }
 
   onGridReady(params) {
     this.api = params.api;
@@ -34,11 +37,9 @@ class AvailableStudents extends Component {
     // console.log(currRows)
     selectRow = this.api.getSelectedRows();
     // console.log("currently ", selectRow, " selected")
-    this.props.changePhoto(selectRow[0].photo)
   }
 
   onRowDoubleClicked(row) {
-    console.log("doubleclicking working")
     let selectedRows = this.api.getSelectedRows();
     let temp;
     selectedRows.forEach( function(selectedRow, index) {

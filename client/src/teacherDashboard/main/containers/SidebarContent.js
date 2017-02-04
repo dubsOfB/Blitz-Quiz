@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import {Glyphicon} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { teacherLogout, navigateSidebar } from '../../actions/teacher_actions';
+import { teacherLogout, navigateSidebar } from '../../../actions/teacher_actions';
 
-import SidebarPersonal from './SidebarPersonal';
+import SidebarPersonal from '../components/SidebarPersonal';
 
-import './../../App.css';
+import './../../../App.css';
 
 //=========================================
 //            Styles
@@ -36,9 +36,19 @@ const styles = {
 
 
 class SidebarContent extends Component {
+  constructor(props){
+    super(props);
+
+    this.handleSidebar = this.handleSidebar.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
 
   static contextTypes = {
     router: PropTypes.object
+  }
+
+  handleSidebar(value) {
+    this.props.navigateSidebar(value);
   }
 
   handleLogout() {
@@ -50,21 +60,21 @@ class SidebarContent extends Component {
     const style = styles.sidebar;
 
     return (
-      <SidebarPersonal style={style}>
+      <SidebarPersonal teacher={this.props.tData.teacher} tId={this.props.tId} style={style}>
         <div style={styles.content}>
           <a href="#" 
             style={styles.sidebarLink}
-            onClick={() => this.navigateSidebar('')}>
+            onClick={() => this.handleSidebar('')}>
           <Glyphicon className="icon" glyph="dashboard" /> Dashboard
           </a>
           <a href="#" 
             style={styles.sidebarLink}
-            onClick={() => this.navigateSidebar('Students')}>
+            onClick={() => this.handleSidebar('Students')}>
           <Glyphicon className="icon" glyph="education" /> Students
           </a>
           <a href="#" 
             style={styles.sidebarLink}
-            onClick={() => this.navigateSidebar('Lectures')}>
+            onClick={() => this.handleSidebar('Lectures')}>
           <Glyphicon className="icon" glyph="book" /> Lectures
           </a>
           <div style={styles.divider} />
@@ -81,6 +91,7 @@ class SidebarContent extends Component {
 
 function mapStateToProps(state) {
   return {
+    tId: state.teacherState.tId,
     tData: state.teacherState.tData
   }
 }

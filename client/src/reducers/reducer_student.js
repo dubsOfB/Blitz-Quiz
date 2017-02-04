@@ -9,7 +9,7 @@ export default function(state = INITIAL_STATE, action) {
     return {...state, sId: action.payload };
 
   case NEW_STUDENT_QUESTION:
-    return {...state, studentQuestions : [action.payload, ...studentQuestions]};
+    return {...state, studentQuestions : [action.payload, ...state.studentQuestions]};
 
   case STUDENT_LOGOUT:
     return INITIAL_STATE;

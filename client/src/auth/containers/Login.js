@@ -8,11 +8,11 @@ import { Link } from 'react-router';
 import '../../App.css';
 
 const Style = {
-    backgroundImage: 'url(http://mrsbarkerscs5.files.wordpress.com/2012/10/cropped-cropped-chalkboard-background-e1350959846138.jpg)',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    top: '0px',
-    left: '0px'
+	backgroundImage: 'url(http://mrsbarkerscs5.files.wordpress.com/2012/10/cropped-cropped-chalkboard-background-e1350959846138.jpg)',
+	backgroundSize: 'cover',
+	backgroundRepeat: 'no-repeat',
+	top: '0px',
+	left: '0px'
 };
 
 class Login extends Component {
@@ -47,36 +47,35 @@ class Login extends Component {
     });
   }
 
-  handleSubmitTeacher(event) {
-    event.preventDefault();
-    let stateContext = this;
+	handleSubmitTeacher(event) {
+		event.preventDefault();
+		let stateContext = this;
 
-    axios.post('/login/Teacher', {
-        params: {
-            Id: this.state.teacherID,
-            password: this.state.teacherPassword
-        }
-    })
-    .then(response => {
-        if(response.data) {
-            this.props.getTeacherData(response.data)
-            .then(resolved => {
-                this.props.teacherLogin(response.data);
-            })
-            .catch(err => {
-              console.log('error in submitTeacher response: ', err);
-            })
-        }   else {
-            console.log("Unsuccessful Teacher Login");
-        }
-    })
-    .then(next => {
-        this.context.router.push('/teacher')
-    })
-    .catch((error) => {
-        console.log('error in submitTeacher', error);
-    });
-  }
+		axios.post('/login/Teacher', {
+			params: {
+				Id: this.state.teacherID,
+				password: this.state.teacherPassword
+			}
+		})
+		.then(response => {
+			if(response.data) {
+				this.props.getTeacherData(response.data)
+				.then()
+				return response.data;
+			} else {
+				console.log("Unsuccessful Teacher Login");
+			}
+		})
+		.then(tId => {
+			this.props.teacherLogin(tId)
+		})
+		.then(next => {
+			this.context.router.push('/teacher')
+		})
+		.catch((error) => {
+			console.log('error in submitTeacher', error);
+		});
+	}
 
   handleSubmitStudent(event) {
     event.preventDefault();

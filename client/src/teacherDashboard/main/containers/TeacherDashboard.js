@@ -2,13 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import Sidebar from 'react-sidebar';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getTeacherData } from '../../actions/teacher_actions';
+import { getTeacherData } from '../../../actions/teacher_actions';
 import { Link } from 'react-router';
 
 import SidebarContent from './SidebarContent';
-import SidebarPersonal from './SidebarPersonal';
 import SidebarTopArea from './SidebarTopArea';
-import Body from '../../body/Body';
+import MainBody from './MainBody';
 
 
 const styles = {
@@ -82,9 +81,6 @@ class TeacherDashboard
   //   const mql = window.matchMedia(`(min-width: 800px)`);
   //   mql.addListener(this.mediaQueryChanged.bind(this));
   //   this.setState({mql: mql, docked: mql.matches});
-    if(!this.props.tId) {
-      this.context.router.push('/');
-    }
   }
 
   // componentWillUnmount() {
@@ -93,6 +89,10 @@ class TeacherDashboard
   // }
 
   componentDidMount() {
+    if(!this.props.tId) {
+      console.log(this.props.tId);
+      this.context.router.push('/');
+    }
     // this.props.getTeacherData(this.props.tId);
     // axios.get('/test/' + this.state.tId).then(response => {
     //     console.log('this is the response: ', response);
@@ -129,14 +129,12 @@ class TeacherDashboard
       open: true
     };
     
-
-
     return (
       <Sidebar {...sidebarProps}>
         <SidebarTopArea title={contentHeader}>
 
           <div>
-            hi
+            <MainBody />
           </div>
 
         </SidebarTopArea>
@@ -147,8 +145,7 @@ class TeacherDashboard
 
 function mapStateToProps(state) {
   return { 
-    tId: state.teacherState.tId,
-    tData: state.teacherState.tData
+    tId: state.teacherState.tId
   }
 }
 

@@ -6,6 +6,9 @@ const styles = {
 }
 
 class StudentPhoto extends Component {
+  constructor(props){
+    super(props);
+  }
 
   componentWillReceiveProps(props) {   
   }

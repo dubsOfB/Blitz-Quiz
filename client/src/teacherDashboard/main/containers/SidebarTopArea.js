@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { selectClass, navigateSidebar } from '../../../actions/teacher_actions';
 
 //=========================================
 //            Styles
@@ -23,21 +24,18 @@ const styles = {
 class SidebarTopArea extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedClass: this.props.tData.classes[0]
-    };
 
-    this.selectClass = this.selectClass.bind(this);
+    this.handleClassSelect = this.handleClassSelect.bind(this);
   }
 
-  selectClass(newClass) {
-    this.setState({
-      selectedClass: newClass
-    })
+  handleClassSelect(newClass) {
+    this.props.selectClass(newClass);
+    this.props.navigateSidebar('');
   }
 
   render() {
-    let currentClass = this.state.selectedClass;
+    console.log(this.props.tData);
+    let currentClass = this.props.selectedClass || this.props.tData.classes[0];
     let classes = this.props.tData.classes;
 
     let populateClasses = (someClass, i) => {
@@ -55,7 +53,7 @@ class SidebarTopArea extends Component {
           <MenuItem
             eventKey={someClass.id}
             key={i}
-            onClick={() => {this.selectClass(someClass);}}>
+            onClick={() => {this.handleClassSelect(someClass);}}>
               {someClass.className}
             </MenuItem>
         )
@@ -84,7 +82,7 @@ class SidebarTopArea extends Component {
 };
 
 function mapStateToProps(state) {
-  return { tData: state.teacherState.tData }
+  return { tData: state.teacherState.tData, selectedClass: state.teacherState.selectedClass }
 }
 
-export default connect(mapStateToProps)(SidebarTopArea);
+export default connect(mapStateToProps, { selectClass, navigateSidebar })(SidebarTopArea);

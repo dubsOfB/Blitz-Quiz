@@ -1,12 +1,12 @@
 import React from 'react';
+import {ListGroupItem, Glyphicon} from 'react-bootstrap';
 
-import QuestionComponent from './QuestionComponent';
-import QuestionAddButton from './QuestionAddButton';
+import Question from './Question';
 
-const QuestionComponents = (props) => {
+const QuestionsList = (props) => {
   const components = props.questions.map((question, i) => {
     return (
-       <QuestionComponent question={question}
+       <Question question={question}
         handleSubmitNewQuestion={props.handleSubmitNewQuestion}
         socket={props.socket}
         classId={props.classId}
@@ -16,7 +16,7 @@ const QuestionComponents = (props) => {
 
   const newComponents = props.newQuestions.map((question, i) => {
     return (
-       <QuestionComponent question={question}
+       <Question question={question}
         handleSubmitNewQuestion={props.handleSubmitNewQuestion}
         number={i}
         key={i} />
@@ -25,10 +25,15 @@ const QuestionComponents = (props) => {
   return (
     <div>
       {components}
+
       {newComponents}
-      <QuestionAddButton handleAddQuestion={props.handleAddQuestion}/>
+
+      <ListGroupItem href="#" onClick={props.handleAddQuestion}>
+        <Glyphicon glyph="plus" /> Add New Question
+      </ListGroupItem>
+      
     </div>
   );
 };
 
-export default QuestionComponents;
+export default QuestionsList;

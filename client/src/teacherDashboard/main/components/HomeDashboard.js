@@ -7,7 +7,7 @@ const todos = {
 }
 
 
-class Main extends Component {
+class HomeDashboard extends Component {
   constructor(props) {
     super(props);
 
@@ -31,4 +31,4 @@ class Main extends Component {
 
 }
 
-export default Main;
+export default HomeDashboard;

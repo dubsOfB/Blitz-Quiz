@@ -10,8 +10,7 @@ const columns = [{
                     children: [
                       { headerName: 'Student Id', field: 'id', width: 100 }, 
                       { headerName: 'First Name', field: 'firstName', width: 350 },
-                      { headerName: 'Last Name', field: 'lastName', width: 350 },
-                      { headerName: 'photo', field: 'photo', width: 300 }
+                      { headerName: 'Last Name', field: 'lastName', width: 350 }
                    ]
                   }]
 const styles = {
@@ -26,16 +25,16 @@ class ImportedStudents extends Component {
     this.api.setRowData(this.props.data)
   }
   
-   onGridReady(params) {
+  onGridReady(params) {
     currRows = this.props.data
     this.api = params.api;
     this.columnApi = params.columnApi;
   }
 
-    onSelectionChanged (row) {
+  onSelectionChanged (row) {
     selectRow = this.api.getSelectedRows();
-    // console.log("currently ", selectRow, " selected")
-    this.props.changePhoto(selectRow[0].photo)
+    // // console.log("currently ", selectRow, " selected")
+    // this.props.changePhoto(selectRow[0].photo)
   }
 
   onRowDoubleClicked(row) {

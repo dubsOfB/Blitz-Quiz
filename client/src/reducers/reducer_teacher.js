@@ -2,13 +2,15 @@ import {
   TEACHER_LOGIN,
   TEACHER_LOGOUT,
   TEACHER_DATA,
-  NAVIGATE_SIDE
+  NAVIGATE_SIDE,
+  SELECT_CLASS
 } from '../actions/teacher_actions';
 
 const INITIAL_STATE = {
   tId: null,
   tData: {},
-  destination: ''
+  destination: '',
+  selectedClass: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -24,7 +26,10 @@ export default function(state = INITIAL_STATE, action) {
     return { ...state, tData: action.payload.data };
   
   case NAVIGATE_SIDE:
-    return { ...state, destination: action.payload.data };
+    return { ...state, destination: action.payload };
+  
+  case SELECT_CLASS:
+    return { ...state, selectedClass: action.payload };
   
   default:
     return state;

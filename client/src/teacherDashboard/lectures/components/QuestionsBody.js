@@ -1,18 +1,19 @@
 import React from 'react';
 import {ListGroup, ListGroupItem, Panel} from 'react-bootstrap';
 
-import QuestionHeader from './QuestionHeader';
-import QuestionComponents from './QuestionComponents';
+import QuestionsList from './QuestionsList';
 
-const QuestionsBodyComponents = (props) => {
+const QuestionsBody = (props) => {
   
   return (
     <div>
       <ListGroup>
-        <QuestionHeader lecture={props.lecture}
-          handleDeselectLecture={props.handleDeselectLecture}/>
+        <ListGroupItem onClick={props.handleDeselectLecture}>
+          {props.lecture.testName}
+        </ListGroupItem>
       </ListGroup>
-      <QuestionComponents questions={props.questions}
+      
+      <QuestionsList questions={props.questions}
         newQuestions={props.newQuestions}
         handleAddQuestion={props.handleAddQuestion} 
         handleSubmitNewQuestion={props.handleSubmitNewQuestion}
@@ -22,4 +23,4 @@ const QuestionsBodyComponents = (props) => {
   );
 };
 
-export default QuestionsBodyComponents;
+export default QuestionsBody;

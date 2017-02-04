@@ -1,7 +1,7 @@
 import React from 'react';
 import {ListGroupItem, Media} from 'react-bootstrap';
 
-const LectureComponent = (props) => {
+const Lecture = (props) => {
     if(props.test.isComplete){
       return (
         <ListGroupItem bsStyle="success">
@@ -27,4 +27,4 @@ const LectureComponent = (props) => {
     }
 };
 
-export default LectureComponent;
+export default Lecture;
