@@ -4,6 +4,7 @@ const sequelize = require('./../db/config');
 const Student = require('./../models/students.model');
 
 const fetchStudents = (req, res) => {
+    
     console.log("fetching students...")
     Student.findAll()
     .then((students) => {
